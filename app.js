@@ -11,13 +11,15 @@ app.use(bodyParser.json());
 const mongoose = require('mongoose');
 
 mongoose.connect(
-	"<CREDENCIALES DE DB>"
+
 	);
 
 mongoose.set("debug", true)
 
 require('./models/Usuario')
 require('./models/Mascota')
+
+require('./config/passport')
 
 //Rutas
 app.use('/v1', require('./routes'));

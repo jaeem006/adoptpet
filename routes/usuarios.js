@@ -3,12 +3,16 @@ const {
 	crearUsuario,
 	obtenerUsuarios,
 	modificarUsuario,
-	eliminarUsuario
+	eliminarUsuario,
+	iniciarSesion
 } = require('../controllers/usuarios');
+const auth = require('./auth')
 
-router.get('/', obtenerUsuarios);
-router.post('/', crearUsuario);
-router.put('/:id', modificarUsuario);
-router.delete('/:id', eliminarUsuario);
+router.get('/', auth.requerido, obtenerUsuarios);
+router.get('/:id', auth.requerido, obtenerUsuarios);
+router.post('/', auth.opcional, crearUsuario);
+router.post('/entrar', iniciarSesion)
+router.put('/:id', auth.requerido, modificarUsuario);
+router.delete('/:id', auth.requerido, eliminarUsuario);
 
 module.exports = router;
